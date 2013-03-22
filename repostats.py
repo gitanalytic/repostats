@@ -16,6 +16,7 @@ import globaldata as globaldata
 import filetype as filetype
 import linecount as linecount
 import datastorage as data
+import showfiles as showfiles
 
 import getopt
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
@@ -27,6 +28,7 @@ for o,p in opts:
         data.loadRepo(p)
     elif o in ('-l','--ls'):
         x = 0
+        showfiles.displayFiles()
         #list files
     elif o in ('-f', '--file'):
         x = 0
