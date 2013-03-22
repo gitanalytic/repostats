@@ -55,25 +55,69 @@ def clearRepo():
 
 # loadRepo takes a github url and loads and saves the repo to the .data directory
 def loadRepo(repo):
-    os.chdir('.data/')
+	if repoIsStored() is True:
+		if theyWantToClearOldRepo() is False:
+			print "No repository loaded."
+			return
+		else:
+			clearRepo()
+
+	os.chdir('.data/')
     
-    if (repo.find('github.com') == -1):
-        repo = 'github.com/' + repo
-    if (repo.find('https://') == -1):
-        repo = 'https://' + repo
+	repo = completeURL(repo)
+	if URLIsValid(repo) is False:
+		print 'Could not resolve url: ' + repo
+		return
 
-    process = subprocess.Popen('git clone ' + repo, shell=True).wait()
 
-    index = repo.rfind('/')
-    if (index == repo.__len__() - 1):
-        repo = repo.rstrip('/')
-        index = repo.rfind('/')
-    repo_name = repo[index + 1:]
-    process = subprocess.Popen('mv ' + repo_name + '/ repo/', shell=True).wait()
+	index = repo.rfind('/')
+	if (index == repo.__len__() - 1):
+		repo = repo.rstrip('/')
+		index = repo.rfind('/')
+	repo_name = repo[index + 1:]
 
-    os.chdir('../')
-    if (repoIsStored()):
-        print 'You already have a repo stored.  Fix this problem'
-        sys.exit()
-    else:
-        storeRepoName(repo_name)
+	# Clone and move to .data
+	process = subprocess.Popen('git clone ' + repo, shell=True).wait()
+	# HHHHHHHHHHHHHHHHHEEEEEEEEEEE****************************RRRRRRRRRRRRRRRRRRRRRRRRR
+	process = subprocess.Popen('mv ' + repo_name + '/ repo/', shell=True).wait()
+
+	os.chdir('../')
+    
+    # store repo
+	storeRepoName(repo_name)
+
+
+def completeURL(repoURL):
+	if (repoURL.find('github.com') == -1):
+		if (repoURL[0] != '/'):
+			repoURL = '/' + repoURL
+		repoURL = 'github.com' + repoURL
+	if (repoURL.find('https://') == -1 and repoURL.find('http://') == -1):
+		repoURL = 'https://' + repoURL
+	return repoURL
+
+def URLIsValid(githubURL):
+	try:
+		urllib2.urlopen(githubURL,timeout=3)
+		return True
+	except urllib2.URLError as err: pass
+	return False
+
+
+def theyWantToClearOldRepo():
+	valid = {'y':True, 'ye':True, 'yes':True, 'n':False, 'no':False}
+	while True:
+		response = raw_input("You already have a repo stored. Would you like to clear it? [y/n]: ").lower()
+		if response in valid:
+			return valid[response]
+		else:
+			print "Please respond with yes or no."
+
+
+
+
+
+
+
+
+
