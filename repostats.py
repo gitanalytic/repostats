@@ -4,7 +4,14 @@ import sys
 import copy
 import subprocess
 
+print os.path.abspath(os.getcwd() + '/.helpers/')
+sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
+
+
 import load as load
+
+load.loadRepo('hello');
+sys.exit()
 
 file = os.getcwd()
 print 'CWD: ' + file
