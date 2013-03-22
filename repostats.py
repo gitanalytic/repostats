@@ -13,10 +13,13 @@ import load as load
 import save as save
 import clear as clear
 import globaldata as globaldata
+import fileextensions as fileextensions
 
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
+fileMode = False
+filename = ""
 for o,p in opts:
     print o
     if o in ('-n','--load'):
@@ -26,11 +29,24 @@ for o,p in opts:
         #list files
     elif o in ('-f', '--file'):
         x = 0
+        fileMode = True
+        filename = p
         #do file analytics
     elif o in ('-s', '--save'):
         save.saveRepo()
     elif o == '--lang':
         x = 0
+        if fileMode:
+            index = filename.rfind('.')
+            language = fileextensions.getFileType(filename[index:len(filename)])
+            if(language): print language
+        else:
+            print 'here'
+            for root, dirs, files in os.walk(os.getcwd() + '/.data'):
+                #index = filename.rfind('.')
+                print files
+                # language = fileextensions.getFileType(filename[index:len(filename)])
+                # if(language): print language
         #print langs
     elif o == '--clear':
         clear.clearRepo()
