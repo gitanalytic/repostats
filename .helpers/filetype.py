@@ -6,7 +6,7 @@ import datastorage as datastorage
 def getFileType(fileExtension):
 	if fileExtension in fileextensions.everyFileExtension:
 		return fileextensions.everyFileExtension[fileExtension]
-	return False
+	return "File type not recognized"
 
 def getLanguageFrequencies():
     if (not datastorage.repoIsStored()):
