@@ -5,33 +5,29 @@ import subprocess
 import globaldata as globaldata
 
 def loadRepo(repo):
-    print 'Made it'
     path = os.getcwd()
 
-    print path
     os.chdir('.data/')
    
-    process = subprocess.Popen('git clone ' + repo, shell=True)
+    process = subprocess.Popen('git clone ' + repo + ' &>> ../log.txt', shell=True)
     process.wait()
 
     os.chdir('../')
     
-    index = p.rfind('/')
-    if (index == p.__len__() - 1):
-        p = p.rstrip('/')
-        index = p.rfind('/')
-    repo_name = p[index + 1:]
-    print repo_name
-    print os.getcwd()
+    index = repo.rfind('/')
+    if (index == repo.__len__() - 1):
+        repo = repo.rstrip('/')
+        index = repo.rfind('/')
+    repo_name = repo[index + 1:]
     os.chdir('.data')
     process = subprocess.Popen('mv ' + repo_name + '/ repo/', shell=True)
     process.wait()
 
+    os.chdir('../')
     if (globaldata.isRepoStored()):
         print 'You already have a repo stored.  Fix this problem'
         sys.exit()
     else:
         globaldata.storeRepoName(repo_name)
-    os.chdir('../')
     sys.exit()
 
