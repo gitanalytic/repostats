@@ -1,5 +1,7 @@
 import fileextensions as fileextensions
 import os
+import sys
+import datastorage as datastorage
 
 def getFileType(fileExtension):
 	if fileExtension in fileextensions.everyFileExtension:
@@ -7,6 +9,11 @@ def getFileType(fileExtension):
 	return False
 
 def getLanguageFrequencies():
+    if (not datastorage.repoIsStored()):
+        print 'No repository is currently loaded.  Please load one and try again.'  
+        print 'Type ./repostats --help for more information'
+        sys.exit()
+
     frequencyMap = {}
     for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
         if '.git' in root: continue

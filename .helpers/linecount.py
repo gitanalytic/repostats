@@ -3,8 +3,13 @@ import sys
 import copy
 import subprocess
 import mimetypes
+import datastorage as datastorage
 
 def countLines():
+    if (not datastorage.repoIsStored()):
+        print 'No repository is currently loaded.  Please load one and try again.'  
+        print 'Type ./repostats --help for more information'
+        sys.exit()
     os.chdir('.data/repo')
 
     total = 0

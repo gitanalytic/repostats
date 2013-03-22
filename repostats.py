@@ -24,7 +24,6 @@ for o,p in opts:
     if o == '--load':
         data.loadRepo(p)
     elif o == '--ls':
-        x = 0
         showfiles.displayFiles()
         #list files
     elif o == '--file':
@@ -42,11 +41,12 @@ for o,p in opts:
             if(language): print language
         else:
             languages = filetype.getLanguageFrequencies()
+            print ' '
             for language in languages:
                 message = language + " : " + str(languages[language]) + " file"
                 if languages[language] > 1: message += "s"
                 print message
-        #print langs
+            print ' ' 
     elif o == '--clear':
         data.clearRepo()
     elif o == '--linecount':
