@@ -7,7 +7,7 @@ $ # All you need is git and python before you get started.
 $ sudo apt-get install git
 $ # Python usually comes standard...
 
-$ git clone https://github/gitanalytic/repostats
+$ git clone https://github.com/gitanalytic/repostats
 $ cd repostats
 ```
 
@@ -73,7 +73,7 @@ $ ./repostats.py --save
 $ ls
 README.md    log.txt    repostats.py    awesomeRepo
 
-$ # They you're free to investigate the next
+$ # Then you're free to investigate the next
 $ # cool project you stumble upon!
 $ ./repostats.py --load https://github.com/ultimatecoder/awesomeproject
 ...
