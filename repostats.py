@@ -24,8 +24,6 @@ except getopt.GetoptError, err:
     manual.printHelp()
     sys.exit(2)
 
-fileMode = False
-filename = ""
 if (opts.__len__() == 0 or opts.__len__() > 2):
     manual.printHelp()
     sys.exit()
@@ -37,25 +35,22 @@ for o,p in opts:
         #list files
     elif o == '--file':
         x = 0
-        fileMode = True
         filename = p
+        index = filename.rfind('.')
+        language = filetype.getFileType(filename[index:len(filename)])
+        print language
         #do file analytics
     elif o == '--save':
         data.saveRepo()
     elif o == '--lang':
         x = 0
-        if fileMode:
-            index = filename.rfind('.')
-            language = filetype.getFileType(filename[index:len(filename)])
-            if(language): print language
-        else:
-            languages = filetype.getLanguageFrequencies()
-            print ' '
-            for language in languages:
-                message = language + " : " + str(languages[language]) + " file"
-                if languages[language] > 1: message += "s"
-                print message
-            print ' ' 
+        languages = filetype.getLanguageFrequencies()
+        print ' '
+        for language in languages:
+            message = language + " : " + str(languages[language]) + " file"
+            if languages[language] > 1: message += "s"
+            print message
+        print ' ' 
     elif o == '--clear':
         data.clearRepo()
     elif o == '--linecount':

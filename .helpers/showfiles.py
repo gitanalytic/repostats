@@ -13,7 +13,7 @@ def displayFiles():
         print 'No repository is currently loaded.  Please load one and try again.'  
         print 'Type ./repostats --help for more information'
         sys.exit()
-    space = "   "
+        space = "   "
     for dirpath, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
 	    current = dirpath[dirpath.rfind('/'):len(dirpath)]
 	    depth = getDepth(dirpath)
