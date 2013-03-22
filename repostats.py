@@ -26,6 +26,9 @@ except getopt.GetoptError, err:
 
 fileMode = False
 filename = ""
+if (opts.__len__() == 0 or opts.__len__() > 2):
+    manual.printHelp()
+    sys.exit()
 for o,p in opts:
     if o == '--load':
         data.loadRepo(p)
