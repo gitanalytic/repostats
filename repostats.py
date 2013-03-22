@@ -10,14 +10,26 @@ import load as load
 import save as save
 import globaldata as globaldata
 
-exit()
 
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 for o,p in opts:
     if o in ('-n','--load'):
-        load.loadRepo(p);
+        load.loadRepo(p)
+        
+        index = p.rfind('/')
+        if (index == p.__len__() - 1):
+            p = p.rstrip('/')
+            index = p.rfind('/')
+        repo_name = p[index + 1:]
+        print repo_name
+        print os.getcwd()
+        os.chdir('.data')
+        process = subprocess.Popen('mv ' + repo_name + '/ repo/', shell=True)
+        process.wait()
+        os.chdir('../')
+        sys.exit()
     elif o in ('-l','--ls'):
         x = 0
         #list files
