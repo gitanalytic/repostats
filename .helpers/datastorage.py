@@ -1,8 +1,6 @@
 import os
 import subprocess
 
-import globaldata as globaldata
-
 # repoIsStored checks if the .helpers/global.txt contains a repo name
 def repoIsStored():
 	path = os.getcwd()
