@@ -77,8 +77,16 @@ def loadRepo(repo):
 	repo_name = repo[index + 1:]
 
 	# Clone and move to .data
-	process = subprocess.Popen('git clone ' + repo, shell=True).wait()
-	# HHHHHHHHHHHHHHHHHEEEEEEEEEEE****************************RRRRRRRRRRRRRRRRRRRRRRRRR
+	# Output file for git clone output
+	logfile = open('log.txt', 'w')
+	process = subprocess.Popen('git clone ' + repo, stdout=logfile, stderr=logfile, shell=True).wait()
+	
+	# Check that git clone was successful
+	if (not os.path.isdir(repo_name)):
+		print 'Not a valid repository address: ' + repo
+		return
+
+	# Rename repository
 	process = subprocess.Popen('mv ' + repo_name + '/ repo/', shell=True).wait()
 
 	os.chdir('../')
@@ -97,10 +105,15 @@ def completeURL(repoURL):
 	return repoURL
 
 def URLIsValid(githubURL):
-	try:
-		urllib2.urlopen(githubURL,timeout=3)
-		return True
-	except urllib2.URLError as err: pass
+	import httplib
+	from urlparse import urlparse
+
+	
+	p = urlparse(githubURL)
+	conn = httplib.HTTPConnection(p.netloc)
+	conn.request('HEAD', p.path)
+	resp = conn.getresponse()
+	return resp.status != 404
 	return False
 
 
