@@ -47,5 +47,4 @@ for o,p in opts:
                 if(language): print language
         #print langs
     elif o == '--clear':
-        x = 0
-        #clear
+        clear.clearRepo()
