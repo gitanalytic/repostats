@@ -16,14 +16,10 @@ import globaldata as globaldata
 import fileextensions as fileextensions
 import linecount as linecount
 
-<<<<<<< HEAD
-keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
-=======
 import datastorage as data
 
-keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
->>>>>>> fe5ce3bd0d14120fefa9dce81ccdfbc015e112d5
 import getopt
+keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
 filename = ""
