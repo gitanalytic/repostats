@@ -42,6 +42,7 @@ def saveRepo():
 		repoName = getRepoName()
 		process = subprocess.Popen('mv "' + path + '/.data/repo" "' + path + '/' + repoName + '"', shell=True).wait()
 		clearRepoName()
+		print 'Repo ' + repoName + 'added to current directory.'
 
 # clearRepo clears in .data and the repo name in .helpers/global.txt
 def clearRepo():
@@ -52,6 +53,7 @@ def clearRepo():
 		repoName = getRepoName()
 		process = subprocess.Popen('rm -rf "' + path + '/.data/repo"', shell=True).wait()
 		clearRepoName()
+		print 'Repo cleared.'
 
 # loadRepo takes a github url and loads and saves the repo to the .data directory
 def loadRepo(repo):
@@ -93,6 +95,8 @@ def loadRepo(repo):
     
     # store repo
 	storeRepoName(repo_name)
+
+	print "Repo loaded."
 
 
 def completeURL(repoURL):
