@@ -15,6 +15,18 @@ import clear as clear
 import globaldata as globaldata
 import fileextensions as fileextensions
 
+def getLanguageFrequencies():
+    frequencyMap = {}
+    for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
+        if '.git' in root: continue
+        for filename in files:
+            index = filename.rfind('.')
+            language = fileextensions.getFileType(filename[index:len(filename)])
+            if(language): 
+                if language in frequencyMap: frequencyMap[language]+=1
+                else: frequencyMap[language] = 1
+    return frequencyMap
+
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
@@ -40,11 +52,11 @@ for o,p in opts:
             language = fileextensions.getFileType(filename[index:len(filename)])
             if(language): print language
         else:
-            for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
-                files = files[2:-2]
-                index = files.rfind('.')
-                language = fileextensions.getFileType(files[index:len(filename)])
-                if(language): print language
+            languages = getLanguageFrequencies()
+            for language in languages:
+                message = language + " : " + str(languages[language]) + " file"
+                if languages[language] > 1: message += "s"
+                print message
         #print langs
     elif o == '--clear':
         clear.clearRepo()
