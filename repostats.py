@@ -14,8 +14,9 @@ import save as save
 import clear as clear
 import globaldata as globaldata
 import fileextensions as fileextensions
+import linecount as linecount
 
-keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
+keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
@@ -50,3 +51,5 @@ for o,p in opts:
         #print langs
     elif o == '--clear':
         clear.clearRepo()
+    elif o == '--linecount':
+        linecount.countLines()
