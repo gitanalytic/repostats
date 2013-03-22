@@ -8,7 +8,9 @@ sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
 import load as load
 import save as save
+import globaldata as globaldata
 
+exit()
 
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
