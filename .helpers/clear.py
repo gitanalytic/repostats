@@ -3,11 +3,11 @@ import subprocess
 
 import globaldata as globaldata
 
-def saveRepo():
+def clearRepo():
 	path = os.getcwd()
 	if globaldata.isRepoStored() is False:
-		print 'There is no repo to be saved' 
+		print 'There is no repo to clear.' 
 	else:
 		repoName = globaldata.getRepoName()
-		process = subprocess.Popen('mv "' + path + '/.data/repo" "' + path + '/' + repoName + '"', shell=True).wait()
+		process = subprocess.Popen('rm -rf "' + path + '/.data/repo"', shell=True).wait()
 		globaldata.clearRepoName()

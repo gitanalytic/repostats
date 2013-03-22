@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
 import load as load
 import save as save
+import clear as clear
 import globaldata as globaldata
 
 
@@ -15,6 +16,7 @@ keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 for o,p in opts:
+    print o
     if o in ('-n','--load'):
         load.loadRepo(p)
         
