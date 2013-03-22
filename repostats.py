@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
 import fileextensions as fileextensions
 import linecount as linecount
-
+import manual as manual
 import datastorage as data
 
 def getLanguageFrequencies():
@@ -26,10 +26,9 @@ def getLanguageFrequencies():
                 else: frequencyMap[language] = 1
     return frequencyMap
 
-keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 
 import getopt
-keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
+keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount', 'help']
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
 filename = ""
@@ -63,3 +62,5 @@ for o,p in opts:
         data.clearRepo()
     elif o == '--linecount':
         linecount.countLines()
+    elif o == '--help':
+        manual.printHelp()

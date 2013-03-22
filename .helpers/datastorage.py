@@ -1,8 +1,6 @@
 import os
 import subprocess
 
-import globaldata as globaldata
-
 # repoIsStored checks if the .helpers/global.txt contains a repo name
 def repoIsStored():
 	path = os.getcwd()
@@ -57,13 +55,15 @@ def clearRepo():
 
 # loadRepo takes a github url and loads and saves the repo to the .data directory
 def loadRepo(repo):
-    path = os.getcwd()
-
     os.chdir('.data/')
-   
-    process = subprocess.Popen('git clone ' + repo + ' >> ../log.txt', shell=True).wait()
-
     
+    if (repo.find('github.com') == -1):
+        repo = 'github.com/' + repo
+    if (repo.find('https://') == -1):
+        repo = 'https://' + repo
+
+    process = subprocess.Popen('git clone ' + repo, shell=True).wait()
+
     index = repo.rfind('/')
     if (index == repo.__len__() - 1):
         repo = repo.rstrip('/')
