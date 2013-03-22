@@ -21,18 +21,18 @@ opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
 filename = ""
 for o,p in opts:
-    if o in ('-n','--load'):
+    if o == '--load':
         data.loadRepo(p)
-    elif o in ('-l','--ls'):
+    elif o == '--ls':
         x = 0
         showfiles.displayFiles()
         #list files
-    elif o in ('-f', '--file'):
+    elif o == '--file':
         x = 0
         fileMode = True
         filename = p
         #do file analytics
-    elif o in ('-s', '--save'):
+    elif o == '--save':
         data.saveRepo()
     elif o == '--lang':
         x = 0
