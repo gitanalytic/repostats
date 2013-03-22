@@ -8,9 +8,11 @@ def loadRepo(repo):
     path = os.getcwd()
 
     print path
+    os.chdir('.data/')
+    process = subprocess.Popen('ls -alrth', shell=True)
+    process.wait()
+   
+    process = subprocess.Popen('git clone ' + repo, shell=True)
+    process.wait()
 
-        process.wait()process = subprocess.Popen('git clone ', shell=True)
-        process.wait()
-        process = subprocess.Popen('mv ./Viral ./repository')
-        process.wait()
-
+    os.chdir('../')
