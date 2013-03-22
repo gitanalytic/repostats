@@ -17,7 +17,13 @@ import showfiles as showfiles
 
 import getopt
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount', 'help']
-opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
+try:
+    opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
+except getopt.GetoptError, err:
+    print 'Error: ' + str(err)
+    manual.printHelp()
+    sys.exit(2)
+
 fileMode = False
 filename = ""
 for o,p in opts:
