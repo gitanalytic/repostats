@@ -9,10 +9,6 @@ os.chdir(real_path[:real_path.rfind('/')])
 
 sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
-import load as load
-import save as save
-import clear as clear
-import globaldata as globaldata
 import fileextensions as fileextensions
 import linecount as linecount
 
