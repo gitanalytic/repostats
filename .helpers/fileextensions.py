@@ -1,3 +1,8 @@
+def getFileType(fileExtension):
+	if fileExtension in everyFileExtension:
+		return everyFileExtension[fileExtension]
+	return False
+
 # Data adapted from http://www.webopedia.com/quick_ref/fileextensionsfull.asp
 
 everyFileExtension = {
