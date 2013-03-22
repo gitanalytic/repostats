@@ -5,6 +5,7 @@ import copy
 import subprocess
 
 import load as load
+import save as save
 
 file = os.getcwd()
 print 'CWD: ' + file
@@ -34,8 +35,8 @@ for o,p in opts:
         x = 0
         #do file analytics
     elif o in ('-s', '--save'):
-        x = 0
-        #save repository
+        print "hi"
+        save.saveRepo()
     elif o is '--lang':
         x = 0
         #print langs
