@@ -21,7 +21,6 @@ opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
 filename = ""
 for o,p in opts:
-    print o
     if o in ('-n','--load'):
         load.loadRepo(p)
     elif o in ('-l','--ls'):
@@ -41,12 +40,11 @@ for o,p in opts:
             language = fileextensions.getFileType(filename[index:len(filename)])
             if(language): print language
         else:
-            print 'here'
-            for root, dirs, files in os.walk(os.getcwd() + '/.data'):
-                #index = filename.rfind('.')
-                print files
-                # language = fileextensions.getFileType(filename[index:len(filename)])
-                # if(language): print language
+            for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
+                files = files[2:-2]
+                index = files.rfind('.')
+                language = fileextensions.getFileType(files[index:len(filename)])
+                if(language): print language
         #print langs
     elif o == '--clear':
         x = 0
