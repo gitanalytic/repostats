@@ -29,9 +29,8 @@ for o,p in opts:
         #do file analytics
     elif o in ('-s', '--save'):
         save.saveRepo()
-    elif o is '--lang':
+    elif o == '--lang':
         x = 0
         #print langs
-    elif o is '--clear':
-        x = 0
-        #clear
+    elif o == '--clear':
+        clear.clearRepo()
