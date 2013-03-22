@@ -18,13 +18,26 @@ import linecount as linecount
 
 import datastorage as data
 
+def getLanguageFrequencies():
+    frequencyMap = {}
+    for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
+        if '.git' in root: continue
+        for filename in files:
+            index = filename.rfind('.')
+            language = fileextensions.getFileType(filename[index:len(filename)])
+            if(language): 
+                if language in frequencyMap: frequencyMap[language]+=1
+                else: frequencyMap[language] = 1
+    return frequencyMap
+
+keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
+
 import getopt
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount']
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
 fileMode = False
 filename = ""
 for o,p in opts:
-    print o
     if o in ('-n','--load'):
         data.loadRepo(p)
     elif o in ('-l','--ls'):
@@ -44,12 +57,11 @@ for o,p in opts:
             language = fileextensions.getFileType(filename[index:len(filename)])
             if(language): print language
         else:
-            print 'here'
-            for root, dirs, files in os.walk(os.getcwd() + '/.data'):
-                #index = filename.rfind('.')
-                print files
-                # language = fileextensions.getFileType(filename[index:len(filename)])
-                # if(language): print language
+            languages = getLanguageFrequencies()
+            for language in languages:
+                message = language + " : " + str(languages[language]) + " file"
+                if languages[language] > 1: message += "s"
+                print message
         #print langs
     elif o == '--clear':
         data.clearRepo()
