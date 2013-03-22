@@ -4,6 +4,7 @@ import sys
 import copy
 import subprocess
 
+import load as load
 
 file = os.getcwd()
 print 'CWD: ' + file
