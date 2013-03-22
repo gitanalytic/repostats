@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Repostats : Scope out a repository" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Repostats</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/gitanalytic/repostats">View on GitHub</a>
+
+          <h1 id="project_title">Repostats</h1>
+          <h2 id="project_tagline">Scope out a repository</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/gitanalytic/repostats/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/gitanalytic/repostats/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Welcome to repostats</h2>
+
+<p>repostats: a simple command-line interface to scope out git repositories and get a general view of a codebase.</p>
+
+<h3>Getting started:</h3>
+
+<pre><code>$ # All you need is git and python before you get started.
+$ sudo apt-get install git
+$ # Python usually comes standard...
+
+$ git clone https://github/gitanalytic/repostats
+$ cd repostats
+</code></pre>
+
+<h3>Load a repo into repostats to analyze</h3>
+
+<pre><code>$ # Got a repo in mind? First load it to repostats:
+$ ./repostats.py --load coolUser/awesomeRepo
+</code></pre>
+
+<h3>Then start the analysis!</h3>
+
+<pre><code>$ # Get a general overview of its contents:
+$ ./repostats.py --lang
+
+Cascading Sheet Style file : 2 files
+JavaScript Object Notation file : 10 files
+HyperTextMarkup Language document : 4 files
+...
+Text file : 2 files
+
+$ # Huh, how many lines is that then?
+$ ./repostats.py --linecount
+Number of lines in git repository: 509
+
+$ # See the general structure of the repo:
+$ ./repostats.py -ls
+
+/repo
+   EveryFileExtension.json
+   favicon.png
+   github.js
+   homepage.css
+   homepage.js
+   index.html
+   package.json
+   README
+   web.js
+   /.git
+      config
+      description
+      HEAD
+      index
+      packed-refs
+      /branches
+      /hooks
+...
+
+$ # Feel free to pipe the output to less for easier viewing :P
+</code></pre>
+
+<h3>Finishing and cleaning up:</h3>
+
+<pre><code>$ # Once you're done scoping out the repository,
+$ * you can either clear it:
+$ ./repostats.py --clear
+
+$ # or save it to the current directory:
+$ ./repostats.py --save
+$ ls
+README.md    log.txt    repostats.py    awesomeRepo
+
+$ # They you're free to investigate the next
+$ # cool project you stumble upon!
+$ ./repostats.py --load https://github.com/ultimatecoder/awesomeproject
+...
+</code></pre>
+
+<h3>Authors</h3>
+
+<p>Built by Paul Martinez (<a href="https://github.com/PaulJuliusMartinez" class="user-mention">@PaulJuliusMartinez</a>), Zach Saraf (<a href="https://github.com/zsaraf" class="user-mention">@zsaraf</a>), and Calvin Studebaker (<a href="https://github.com/CalvinStudebaker" class="user-mention">@CalvinStudebaker</a>).</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Repostats maintained by <a href="https://github.com/gitanalytic">gitanalytic</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
