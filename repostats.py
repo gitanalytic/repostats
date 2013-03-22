@@ -15,6 +15,8 @@ import clear as clear
 import globaldata as globaldata
 import fileextensions as fileextensions
 
+import datastorage as data
+
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear']
 import getopt
 opts, remainder = getopt.getopt(sys.argv[1:],'p:l',keywords)
@@ -23,7 +25,7 @@ filename = ""
 for o,p in opts:
     print o
     if o in ('-n','--load'):
-        load.loadRepo(p)
+        data.loadRepo(p)
     elif o in ('-l','--ls'):
         x = 0
         #list files
@@ -33,7 +35,7 @@ for o,p in opts:
         filename = p
         #do file analytics
     elif o in ('-s', '--save'):
-        save.saveRepo()
+        data.saveRepo()
     elif o == '--lang':
         x = 0
         if fileMode:
@@ -49,4 +51,4 @@ for o,p in opts:
                 # if(language): print language
         #print langs
     elif o == '--clear':
-        clear.clearRepo()
+        data.clearRepo()
