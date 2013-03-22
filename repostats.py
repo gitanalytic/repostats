@@ -9,23 +9,11 @@ os.chdir(real_path[:real_path.rfind('/')])
 
 sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
-import fileextensions as fileextensions
+import filetype as filetype
 import linecount as linecount
 import manual as manual
 import datastorage as data
-
-def getLanguageFrequencies():
-    frequencyMap = {}
-    for root, dirs, files in os.walk(os.getcwd() + '/.data/repo'):
-        if '.git' in root: continue
-        for filename in files:
-            index = filename.rfind('.')
-            language = fileextensions.getFileType(filename[index:len(filename)])
-            if(language): 
-                if language in frequencyMap: frequencyMap[language]+=1
-                else: frequencyMap[language] = 1
-    return frequencyMap
-
+import showfiles as showfiles
 
 import getopt
 keywords = ['load=','ls','file=', 'save', 'lang', 'clear', 'linecount', 'help']
@@ -37,6 +25,7 @@ for o,p in opts:
         data.loadRepo(p)
     elif o in ('-l','--ls'):
         x = 0
+        showfiles.displayFiles()
         #list files
     elif o in ('-f', '--file'):
         x = 0
@@ -49,10 +38,10 @@ for o,p in opts:
         x = 0
         if fileMode:
             index = filename.rfind('.')
-            language = fileextensions.getFileType(filename[index:len(filename)])
+            language = filetype.getFileType(filename[index:len(filename)])
             if(language): print language
         else:
-            languages = getLanguageFrequencies()
+            languages = filetype.getLanguageFrequencies()
             for language in languages:
                 message = language + " : " + str(languages[language]) + " file"
                 if languages[language] > 1: message += "s"
