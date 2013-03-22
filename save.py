@@ -1,3 +1,0 @@
-import fileextensions
-
-print fileextensions.everyFileExtension

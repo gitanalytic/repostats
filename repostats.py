@@ -4,23 +4,18 @@ import sys
 import copy
 import subprocess
 
-print os.path.abspath(os.getcwd() + '/.helpers/')
 sys.path.insert(0, os.path.abspath(os.getcwd() + '/.helpers'))
 
-
-import load as load
+# import load as load
 import save as save
 
-load.loadRepo('hello');
-sys.exit()
-
-file = os.getcwd()
-print 'CWD: ' + file
-for dirname,dirnames, filenames in os.walk('.'):
-    print dirname
-process = subprocess.Popen('ls -alrth .', shell=True)
-process.wait()
-sys.exit()
+# file = os.getcwd()
+# print 'CWD: ' + file
+# for dirname,dirnames, filenames in os.walk('.'):
+#     print dirname
+# process = subprocess.Popen('ls -alrth .', shell=True)
+# process.wait()
+# sys.exit()
 
 
 
@@ -42,7 +37,6 @@ for o,p in opts:
         x = 0
         #do file analytics
     elif o in ('-s', '--save'):
-        print "hi"
         save.saveRepo()
     elif o is '--lang':
         x = 0
@@ -50,7 +44,3 @@ for o,p in opts:
     elif o is '--clear':
         x = 0
         #clear
-        
-f = open(encoded_file, 'r')
-not_found = True
-encoded_line = ''
