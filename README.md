@@ -7,7 +7,7 @@ $ # All you need is git and python before you get started.
 $ sudo apt-get install git
 $ # Python usually comes standard...
 
-$ git clone https://github/gitanalytic/repostats
+$ git clone https://github.com/gitanalytic/repostats
 $ cd repostats
 ```
 
